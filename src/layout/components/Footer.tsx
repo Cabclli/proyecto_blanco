@@ -14,31 +14,10 @@ export default function LabelBottomNavigation() {
   };
 
   return (
-    <BottomNavigation
-      sx={{ maxWidth: 540, alignItems: "center" }}
-      value={value}
-      onChange={handleChange}
-    >
-      <BottomNavigationAction
-        label="Busqueda"
-        value="recents"
-        icon={<SearchIcon />}
-      />
-      <BottomNavigationAction
-        label="Mensajes "
-        value="favorites"
-        icon={<MailOutlineIcon />}
-      />
-      <BottomNavigationAction
-        label="Favoritos"
-        value="nearby"
-        icon={<FavoriteBorderIcon />}
-      />
-      <BottomNavigationAction
-        label="Perfil"
-        value="folder"
-        icon={<FaceIcon />}
-      />
-    </BottomNavigation>
+    <footer>
+      <p>Contactanos</p>
+      <p>Instagram</p>
+      <p>Teléfono</p>
+    </footer>
   );
 }
