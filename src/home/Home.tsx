@@ -1,51 +1,24 @@
-import {
-  Button,
-  Card,
-  CardActionArea,
-  CardActions,
-  CardContent,
-  CardMedia,
-  Container,
-  Grid,
-  Stack,
-  Typography,
-} from "@mui/material";
+import React from 'react';
+import { Box, Container, Stack } from "@mui/material";
+import Carousel from "./components/carrusel";
+import MediaCard from "./components/card"
+const slides = [
+  { image: 'https://via.placeholder.com/600x300?text=Image+1', url: '/planes' },
+  { image: 'https://via.placeholder.com/600x300?text=Image+2', url: '/planes' },
+  { image: 'https://via.placeholder.com/600x300?text=Image+3', url: '/planes' }
+];
 
 const Home = () => {
   return (
-    <Container maxWidth="lg" style={{ marginTop: "50px" }}>
-      <Stack
-        direction="column"
-        justifyContent="center"
-        alignItems="center"
-        width={"100%"}
-      >
-        <Card sx={{ maxWidth: 345 }}>
-          <CardActionArea>
-            <CardMedia
-              component="img"
-              height="140"
-              image="/static/images/cards/contemplative-reptile.jpg"
-              alt="green iguana"
-            />
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
-                Lizard
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                Lizards are a widespread group of squamate reptiles, with over
-                6,000 species, ranging across all continents except Antarctica
-              </Typography>
-            </CardContent>
-          </CardActionArea>
-          <CardActions>
-            <Button size="small" variant="contained" color="primary">
-              Siguiente
-            </Button>
-          </CardActions>
-        </Card>
+    <><Container maxWidth="lg" style={{ marginTop: "10px" }}>
+      <Stack alignItems="center">
+        <Carousel slides={slides} />
       </Stack>
     </Container>
+    <Box>
+      <MediaCard/>
+    </Box>
+    </>
   );
 };
 
