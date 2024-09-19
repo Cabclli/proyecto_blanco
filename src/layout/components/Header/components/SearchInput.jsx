@@ -1,23 +1,21 @@
-import React from 'react';
-import { OutlinedInput, InputAdornment } from '@mui/material';
-import SearchIcon from '@mui/icons-material/Search';
+import React from "react";
+import { OutlinedInput, InputAdornment } from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
 
-const SearchInput = ({ sx, ...props }) => (
+const SearchInput = () => (
   <OutlinedInput
-    {...props}
     sx={{
       width: 400,
       height: 50,
-      '& .MuiOutlinedInput-notchedOutline': {
+      "& .MuiOutlinedInput-notchedOutline": {
         borderColor: "#153f73", // Color del borde
       },
-      '&:hover .MuiOutlinedInput-notchedOutline': {
+      "&:hover .MuiOutlinedInput-notchedOutline": {
         borderColor: "#153f73", // Color del borde al pasar el mouse
       },
-      '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+      "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
         borderColor: "#285b99", // Color del borde cuando el input está enfocado
       },
-      ...sx,
     }}
     endAdornment={
       <InputAdornment position="end">
