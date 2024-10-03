@@ -13,7 +13,7 @@ const Header = () => (
         margin: 2,
       }}
     >
-      <Stack sx={{ flexGrow: 1, paddingLeft: "28%", flexDirection: "row" }}>
+      <Stack sx={{ flexGrow: 1, flexDirection: "row", paddingLeft: "28%" }}>
         <SearchInput />
         <Button>
           <ShoppingCart sx={{ color: "#285b99" }} />
@@ -37,15 +37,31 @@ const Header = () => (
     <Stack
       sx={{
         flexDirection: "row",
-        justifyContent: "space-evenly",
         bgcolor: "#285b99",
         paddingTop: "20px",
         paddingBottom: "20px",
+        justifyContent: "center",
       }}
     >
-      <Button sx={{ color: "#fff" }}>Productos</Button>
+      <Button
+        sx={{
+          color: "#fff",
+          marginLeft: "20%",
+          marginRight: "20%",
+        }}
+      >
+        Productos
+      </Button>
       <Button sx={{ color: "#fff" }}>Arma tu PC</Button>
-      <Button sx={{ color: "#fff" }}>Ayuda</Button>
+      <Button
+        sx={{
+          color: "#fff",
+          marginLeft: "20%",
+          marginRight: "20%",
+        }}
+      >
+        Ayuda
+      </Button>
     </Stack>
   </>
 );

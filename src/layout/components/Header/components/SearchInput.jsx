@@ -5,7 +5,7 @@ import SearchIcon from "@mui/icons-material/Search";
 const SearchInput = () => (
   <OutlinedInput
     sx={{
-      width: 400,
+      width: "70%",
       height: 50,
       "& .MuiOutlinedInput-notchedOutline": {
         borderColor: "#153f73", // Color del borde

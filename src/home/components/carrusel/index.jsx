@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
+import { Stack } from "@mui/material";
 
 const Carousel = ({ slides }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -8,7 +9,13 @@ const Carousel = ({ slides }) => {
   };
 
   const prevSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + slides.length) % slides.length);
+    setCurrentIndex(
+      (prevIndex) => (prevIndex - 1 + slides.length) % slides.length
+    );
+  };
+
+  const goToSlide = (index) => {
+    setCurrentIndex(index);
   };
 
   useEffect(() => {
@@ -17,49 +24,54 @@ const Carousel = ({ slides }) => {
   }, [slides.length]);
 
   return (
-    <div style={{ position: 'relative', width: '5vm', maxWidth: '100%', overflow: 'hidden' }}>
-      <a href={slides[currentIndex].url} target="_blank" rel="noopener noreferrer" style={{ display: 'block' }}>
+    <Stack
+      style={{
+        position: "relative",
+        width: "90%",
+        maxWidth: "100%",
+        overflow: "hidden",
+        paddingBottom: "50px",
+      }}
+    >
+      <a
+        href={slides[currentIndex].url}
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{ display: "block", height: "100%" }}
+      >
         <img
           src={slides[currentIndex].image}
           alt={`Slide ${currentIndex + 1}`}
-          style={{ width: '100%', height: 'auto', display: 'block' }}
+          style={{ width: "100%", height: "100%", objectFit: "cover" }}
         />
       </a>
-      <button
-        onClick={prevSlide}
+      <div
         style={{
-          position: 'absolute',
-          top: '50%',
-          left: '10px',
-          transform: 'translateY(-50%)',
-          background: 'rgba(0, 0, 0, 0.5)',
-          color: '#fff',
-          border: 'none',
-          padding: '10px',
-          cursor: 'pointer',
-          zIndex: 2
+          position: "absolute",
+          bottom: "10px",
+          left: "50%",
+          transform: "translateX(-50%)",
+          display: "flex",
+          gap: "20px",
         }}
       >
-        &lt;
-      </button>
-      <button
-        onClick={nextSlide}
-        style={{
-          position: 'absolute',
-          top: '50%',
-          right: '10px',
-          transform: 'translateY(-50%)',
-          background: 'rgba(0, 0, 0, 0.5)',
-          color: '#fff',
-          border: 'none',
-          padding: '10px',
-          cursor: 'pointer',
-          zIndex: 2
-        }}
-      >
-        &gt;
-      </button>
-    </div>
+        {slides.map((_, index) => (
+          <span
+            key={index}
+            onClick={() => goToSlide(index)}
+            style={{
+              cursor: "pointer",
+              width: "15px",
+              height: "15px",
+              borderRadius: "50%",
+              backgroundColor: currentIndex === index ? "#285b99" : "lightgray",
+              display: "inline-block",
+              transition: "background-color 0.3s",
+            }}
+          />
+        ))}
+      </div>
+    </Stack>
   );
 };
 
