@@ -3,6 +3,7 @@ import { Stack, Button } from "@mui/material";
 import { ShoppingCart } from "@mui/icons-material";
 import SearchInput from "./components/SearchInput.jsx";
 import PersonIcon from "@mui/icons-material/Person";
+import Link from "next/link.js";
 
 const Header = () => (
   <>
@@ -43,6 +44,7 @@ const Header = () => (
         justifyContent: "center",
       }}
     >
+    
       <Button
         sx={{
           color: "#fff",
@@ -52,6 +54,7 @@ const Header = () => (
       >
         Productos
       </Button>
+      
       <Button sx={{ color: "#fff" }}>Arma tu PC</Button>
       <Button
         sx={{
