@@ -42,7 +42,7 @@ const Carousel = ({ slides }) => {
         <img
           src={slides[currentIndex].image}
           alt={`Slide ${currentIndex + 1}`}
-          style={{ width: "100%", height: "100%", objectFit: "cover" }}
+          style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius:"10px" }}
         />
       </a>
       <div

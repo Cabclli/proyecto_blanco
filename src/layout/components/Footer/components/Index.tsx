@@ -17,7 +17,7 @@ export default function Footer() {
     <footer>
       <Stack
         sx={{
-          bgcolor: "#153f73",
+          bgcolor: "#285b99",
           alignItems: "center",
           flexDirection: "row",
           justifyContent: "space-around",

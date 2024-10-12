@@ -44,23 +44,22 @@ const Header = () => (
         justifyContent: "center",
       }}
     >
-    
       <Button
         sx={{
           color: "#fff",
-          marginLeft: "20%",
-          marginRight: "20%",
+          marginLeft: "10%",
+          marginRight: "5%",
         }}
       >
         Productos
       </Button>
-      
-      <Button sx={{ color: "#fff" }}>Arma tu PC</Button>
+      <Button sx={{ color: "#fff", marginLeft: "5%", marginRight:"5%" }}>Notebooks</Button>      
+      <Button sx={{ color: "#fff", marginLeft: "5%", marginRight:"5%" }}>Arma tu PC</Button>
       <Button
         sx={{
           color: "#fff",
-          marginLeft: "20%",
-          marginRight: "20%",
+          marginLeft: "5%",
+          marginRight: "10%",
         }}
       >
         Ayuda
