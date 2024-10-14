@@ -3,17 +3,18 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 async function main() {
+  // Asegúrate de que estas categorías existan previamente
+  const cpuCategory = await prisma.category.findFirst({ where: { name: "CPU" } });
+  const gpuCategory = await prisma.category.findFirst({ where: { name: "GPU" } });
+
   const componentes = [
-    { componente: "Memoria RAM", precio: "50 USD", imagen: "url-de-la-imagen-ram.jpg" },
-    { componente: "Tarjeta Gráfica", precio: "300 USD", imagen: "url-de-la-imagen-gpu.jpg" },
-    { componente: "Disco Duro SSD", precio: "100 USD", imagen: "url-de-la-imagen-ssd.jpg" },
-    { componente: "Memoria RAM", precio: "50 USD", imagen: "url-de-la-imagen-ram.jpg" },
-    { componente: "Tarjeta Gráfica", precio: "300 USD", imagen: "url-de-la-imagen-gpu.jpg" },
-    { componente: "Disco Duro SSD", precio: "100 USD", imagen: "url-de-la-imagen-ssd.jpg" },
+    { name: "Memoria RAM", price: 50, stock: 100, categoryId: cpuCategory.id },
+    { name: "Tarjeta Gráfica", price: 300, stock: 50, categoryId: gpuCategory.id },
+    { name: "Disco Duro SSD", price: 100, stock: 30, categoryId: cpuCategory.id },
   ];
 
   for (const comp of componentes) {
-    const result = await prisma.componente.create({
+    const result = await prisma.component.create({
       data: comp,
     });
     console.log(result);

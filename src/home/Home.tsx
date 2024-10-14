@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Container, Stack } from "@mui/material";
+import { Container, Stack } from "@mui/material";
 import Carousel from "./components/carrusel";
 import MediaCard from "./components/card";
 const slides = [

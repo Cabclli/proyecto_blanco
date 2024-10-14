@@ -3,69 +3,82 @@ import { Stack, Button } from "@mui/material";
 import { ShoppingCart } from "@mui/icons-material";
 import SearchInput from "./components/SearchInput.jsx";
 import PersonIcon from "@mui/icons-material/Person";
-import Link from "next/link.js";
+import { useRouter } from "next/router";
 
-const Header = () => (
-  <>
-    <Stack
-      sx={{
-        flexDirection: "row",
-        justifyContent: "space-between",
-        margin: 2,
-      }}
-    >
-      <Stack sx={{ flexGrow: 1, flexDirection: "row", paddingLeft: "28%" }}>
-        <SearchInput />
-        <Button>
-          <ShoppingCart sx={{ color: "#285b99" }} />
-        </Button>
+const Header = () => {
+  const router = useRouter();
+
+  const handleLoginClick = () => {
+    router.push("/login");
+  };
+
+  return (
+    <>
+      <Stack
+        sx={{
+          flexDirection: "row",
+          justifyContent: "space-between",
+          margin: 2,
+        }}
+      >
+        <Stack sx={{ flexGrow: 1, flexDirection: "row", paddingLeft: "28%" }}>
+          <SearchInput />
+          <Button>
+            <ShoppingCart sx={{ color: "#285b99" }} />
+          </Button>
+        </Stack>
+        <Stack sx={{ flexDirection: "row", marginLeft: "auto" }}>
+          <Button
+            onClick={handleLoginClick}
+            sx={{
+              bgcolor: "#285b99",
+              color: "#fff",
+              "&:hover": {
+                bgcolor: "#1e4a76",
+              }
+            }}
+          >
+            <PersonIcon sx={{ color: "#fff", marginRight: 1 }} />
+            Iniciar sesión
+          </Button>
+        </Stack>
       </Stack>
-      <Stack sx={{ flexDirection: "row", marginLeft: "auto" }}>
+      <Stack
+        sx={{
+          flexDirection: "row",
+          bgcolor: "#285b99",
+          paddingTop: "20px",
+          paddingBottom: "20px",
+          justifyContent: "center",
+        }}
+      >
         <Button
           sx={{
-            bgcolor: "#285b99",
             color: "#fff",
-            "&:hover": {
-              bgcolor: "#1e4a76",
-            },
+            marginLeft: "10%",
+            marginRight: "5%",
           }}
         >
-          <PersonIcon sx={{ color: "#fff" }} />
-          Iniciar sesion
+          Productos
+        </Button>
+        <Button sx={{ color: "#fff", marginLeft: "5%", marginRight: "5%" }}>
+          Notebooks
+        </Button>
+        <Button sx={{ color: "#fff", marginLeft: "5%", marginRight: "5%" }}>
+          Arma tu PC
+        </Button>
+        <Button
+          sx={{
+            color: "#fff",
+            marginLeft: "5%",
+            marginRight: "10%",
+          }}
+        >
+          Ayuda
         </Button>
       </Stack>
-    </Stack>
-    <Stack
-      sx={{
-        flexDirection: "row",
-        bgcolor: "#285b99",
-        paddingTop: "20px",
-        paddingBottom: "20px",
-        justifyContent: "center",
-      }}
-    >
-      <Button
-        sx={{
-          color: "#fff",
-          marginLeft: "10%",
-          marginRight: "5%",
-        }}
-      >
-        Productos
-      </Button>
-      <Button sx={{ color: "#fff", marginLeft: "5%", marginRight:"5%" }}>Notebooks</Button>      
-      <Button sx={{ color: "#fff", marginLeft: "5%", marginRight:"5%" }}>Arma tu PC</Button>
-      <Button
-        sx={{
-          color: "#fff",
-          marginLeft: "5%",
-          marginRight: "10%",
-        }}
-      >
-        Ayuda
-      </Button>
-    </Stack>
-  </>
-);
+    </>
+  );
+};
 
 export default Header;

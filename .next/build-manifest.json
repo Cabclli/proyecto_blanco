@@ -32,10 +32,10 @@
       "static/chunks/main.js",
       "static/chunks/pages/informacion.js"
     ],
-    "/planes": [
+    "/login": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/planes.js"
+      "static/chunks/pages/login.js"
     ]
   },
   "ampFirstPages": []

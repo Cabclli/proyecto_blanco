@@ -1,9 +1,10 @@
 {
   "/_app": "pages/_app.js",
-  "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
+  "/_error": "pages/_error.js",
+  "/productos": "pages/productos.js",
   "/informacion": "pages/informacion.js",
-  "/login": "pages/login.js",
   "/": "pages/index.js",
-  "/planes": "pages/planes.js"
+  "/api": "pages/api.js",
+  "/login": "pages/login.js"
 }

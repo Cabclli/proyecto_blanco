@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import Compras from "@/src/compras/Compras";
-import { plans } from "@/src/planes/components/PlansSection";
+import { plans } from "@/src/planes/components/ProductsDisplay";
 import { z } from "zod";
 import { Alert } from "@mui/material";
 

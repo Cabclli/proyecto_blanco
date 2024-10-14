@@ -1,4 +1,4 @@
-import Todos from "@/src/informacion/index"
+import Todos from "@/src/informacion";
 
 const detalles = () => {
   return <Todos />;

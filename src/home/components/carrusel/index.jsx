@@ -1,21 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { Stack } from "@mui/material";
+import { useRouter } from "next/router";
 
 const Carousel = ({ slides }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const router = useRouter();
 
   const nextSlide = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % slides.length);
   };
 
   const prevSlide = () => {
-    setCurrentIndex(
-      (prevIndex) => (prevIndex - 1 + slides.length) % slides.length
-    );
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + slides.length) % slides.length);
   };
 
   const goToSlide = (index) => {
     setCurrentIndex(index);
+  };
+
+  const handleImageClick = () => {
+    router.push("/planes");
   };
 
   useEffect(() => {
@@ -33,18 +37,13 @@ const Carousel = ({ slides }) => {
         paddingBottom: "50px",
       }}
     >
-      <a
-        href={slides[currentIndex].url}
-        target="_blank"
-        rel="noopener noreferrer"
-        style={{ display: "block", height: "100%" }}
-      >
+      <div onClick={handleImageClick} style={{ cursor: "pointer", height: "100%" }}>
         <img
           src={slides[currentIndex].image}
           alt={`Slide ${currentIndex + 1}`}
-          style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius:"10px" }}
+          style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "10px" }}
         />
-      </a>
+      </div>
       <div
         style={{
           position: "absolute",
