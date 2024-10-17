@@ -15,6 +15,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     } catch (error) {
       console.error(error);
       res.status(500).json({ error: 'Error al obtener los componentes' });
+    } finally {
+      await prisma.$disconnect(); // Asegura cerrar la conexión
     }
   } else {
     res.setHeader('Allow', ['GET']);

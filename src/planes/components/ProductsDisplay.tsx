@@ -17,7 +17,7 @@ const ComponentList: React.FC = () => {
 
   useEffect(() => {
     const fetchComponents = async () => {
-      const response = await fetch('/api/index'); // Asegúrate de que esta sea la ruta correcta
+      const response = await fetch("/api"); // Asegúrate de que esta sea la ruta correcta
       const data = await response.json();
       setComponents(data);
     };
@@ -32,8 +32,6 @@ const ComponentList: React.FC = () => {
           name: component.name,
           description: component.category.name,
           price: component.price,
-          hrefViewMore: '#', // Ajusta según tu lógica
-          hrefSelectPlan: '#', // Ajusta según tu lógica
         }} />
       ))}
     </div>

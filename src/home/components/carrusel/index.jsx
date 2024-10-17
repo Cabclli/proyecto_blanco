@@ -19,7 +19,7 @@ const Carousel = ({ slides }) => {
   };
 
   const handleImageClick = () => {
-    router.push("/planes");
+    router.push("/productos");
   };
 
   useEffect(() => {
