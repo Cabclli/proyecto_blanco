@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import ProductCard from './ProductCard';
+import React, { useEffect, useState } from "react";
+import ProductCard from "./ProductCard"; // Ajusta la ruta según tu estructura
+import { Grid } from "@mui/material";
 
 interface ComponentData {
   id: number;
@@ -26,15 +27,18 @@ const ComponentList: React.FC = () => {
   }, []);
 
   return (
-    <div>
+    <Grid container spacing={2}>
       {components.map((component) => (
-        <ProductCard key={component.id} component={{
-          name: component.name,
-          description: component.category.name,
-          price: component.price,
-        }} />
+        <ProductCard
+          key={component.id}
+          component={{
+            name: component.name,
+            description: component.category.name,
+            price: component.price,
+          }}
+        />
       ))}
-    </div>
+    </Grid>
   );
 };
 

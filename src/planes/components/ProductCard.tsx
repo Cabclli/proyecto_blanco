@@ -1,11 +1,4 @@
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  Grid,
-  Stack,
-  Typography,
-} from "@mui/material";
+import { Card, CardContent, CardHeader, Grid, Typography } from "@mui/material";
 import React from "react";
 
 // Define la interfaz para las propiedades del componente
@@ -19,9 +12,9 @@ interface ProductCardProps {
 
 const ProductCard: React.FC<ProductCardProps> = ({ component }) => {
   return (
-    <Card>
-      <CardHeader title={component.name} subheader={component.description} />
-      <Grid >
+    <Grid item xs={4}>
+      <Card sx={{ marginLeft: "10%" }}>
+        <CardHeader title={component.name} subheader={component.description} />
         <CardContent>
           <Typography variant="h4" className="title">
             {`USD$ ${component.price
@@ -29,8 +22,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ component }) => {
               .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`}
           </Typography>
         </CardContent>
-      </Grid>
-    </Card>
+      </Card>
+    </Grid>
   );
 };
 
