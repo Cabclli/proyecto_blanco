@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import ProductCard from "./ProductCard"; // Ajusta la ruta según tu estructura
-import { Button, Grid, Stack, Typography } from "@mui/material";
+import ProductCard from "./ProductCard";
+import { Button, Stack, Typography } from "@mui/material";
 import { useRouter } from "next/router";
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import styles from './ProductDisplay.module.css';
 
 interface ComponentData {
   id: number;
@@ -33,34 +34,25 @@ const ComponentList: React.FC = () => {
     router.push("/");
   };
 
-
   return (
     <div>  
-      <Stack sx={{ display:"flex",
-        flexDirection:"row",
-        borderBottom:"3px solid gray",
-        marginLeft: "10%",
-        marginRight:"10%",
-        paddingTop: "2%",
-        alignItems:"center"
-        }}>
+      <Stack sx={{ display: "flex", flexDirection: "row", borderBottom: "3px solid gray", marginLeft: "10%", marginRight: "10%", paddingTop: "2%", alignItems: "center" }}>
         <Button onClick={handleVolverClick}>
-          <ArrowBackIosIcon/>
+          <ArrowBackIosIcon />
         </Button>
         <Typography variant="h4">Destacados</Typography>
       </Stack>
-      <Grid container spacing={2}>
+      <div className={styles.productGrid}>
         {components.map((component) => (
-         <ProductCard
+          <ProductCard
             key={component.id}
             component={{
               name: component.name,
-              description: component.category.name,
               price: component.price,
-           }}
+            }}
           />
         ))}
-      </Grid>
+      </div>
     </div>
   );
 };
