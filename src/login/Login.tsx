@@ -38,7 +38,6 @@ const Login: React.FC = () => {
         height: '100vh',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#f0f4f8',
       }}
     >
       <LoginForm

@@ -1,4 +1,4 @@
-import Productos from "@/src/planes/Productos";
+import Productos from "@/src/productos/Index";
 
 const productos = () => {
   return <Productos />;
