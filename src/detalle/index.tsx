@@ -1,8 +1,8 @@
-import Detalle from "./components/Detalle";
+import Detalles from "./components/Detalle";
 
 const Todos = () => {
     return (
-      <Detalle/>
+      <Detalles/>
     );
   };
   export default Todos;

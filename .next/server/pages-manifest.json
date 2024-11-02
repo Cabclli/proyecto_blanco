@@ -2,7 +2,6 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/productos": "pages/productos.js",
-  "/detalle/[id]": "pages/detalle/[id].js",
-  "/api": "pages/api.js"
+  "/carrito": "pages/carrito.js",
+  "/productos": "pages/productos.js"
 }
