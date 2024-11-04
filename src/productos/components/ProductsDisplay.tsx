@@ -36,9 +36,9 @@ const ComponentList: React.FC = () => {
 
   return (
     <div>  
-      <Stack sx={{ display: "flex", flexDirection: "row", borderBottom: "3px solid gray", marginLeft: "10%", marginRight: "10%", paddingTop: "2%", alignItems: "center" }}>
-        <Button onClick={handleVolverClick}>
-          <ArrowBackIosIcon />
+      <Stack className={styles.destacados}>
+        <Button className={styles.backButton} onClick={handleVolverClick}>
+          <ArrowBackIosIcon className={styles.ArrowBackIosIcon}/>
         </Button>
         <Typography variant="h4">Destacados</Typography>
       </Stack>
