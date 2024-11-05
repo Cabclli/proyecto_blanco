@@ -15,6 +15,9 @@ const Header = () => {
   const handleProductosClick = () => {
     router.push("/productos")
   };
+  const handleaAyuda = () => {
+    router.push("/ayuda")
+  }
 
   return (
     <>
@@ -75,6 +78,7 @@ const Header = () => {
           Arma tu PC
         </Button>
         <Button
+        onClick={handleaAyuda}
           sx={{
             color: "#fff",
             marginLeft: "5%",

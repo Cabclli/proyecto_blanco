@@ -1,3 +1,5 @@
+import { useRouter } from 'next/router'; // Añadir al inicio
+
 import React, { useState } from "react";
 import { Stack } from "@mui/material";
 import LoginForm from "./components/LoginForm"; // Asegúrate de que la ruta sea correcta
@@ -20,6 +22,8 @@ const Login: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
+
+    // Validaciones
     if (!validateEmail(email)) {
       setError("Por favor, introduce un correo electrónico válido.");
       return;
@@ -28,8 +32,26 @@ const Login: React.FC = () => {
       setError("La contraseña debe tener al menos 8 caracteres, una mayúscula y un número.");
       return;
     }
-    setError("");
-    // Lógica para enviar los datos...
+    
+    setError(""); // Limpiar el error si todo es válido
+
+    // Simular el inicio de sesión exitoso
+    // Aquí deberías llamar a tu API de autenticación
+    // En este caso, simplemente se simula el éxito
+    const fakeUserEmail = "test@example.com"; // Simulamos un email de usuario
+    const fakeUserPassword = "Password1"; // Simulamos una contraseña de usuario
+
+    if (email === fakeUserEmail && password === fakeUserPassword) {
+      const cart = JSON.parse(localStorage.getItem("cart") || "[]"); // Obtener el carrito
+      // Aquí podrías manejar el carrito como desees
+      console.log("Inicio de sesión exitoso. Carrito:", cart);
+
+      // Redirigir al usuario o realizar alguna acción después del inicio de sesión
+      // Por ejemplo, podrías usar el router de Next.js para redirigir
+      // router.push('/home'); // Asegúrate de importar useRouter si lo usas
+    } else {
+      setError("Correo o contraseña incorrectos."); // Manejo de error si las credenciales no son válidas
+    }
   };
 
   return (
