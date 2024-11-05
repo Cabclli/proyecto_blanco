@@ -1,8 +1,8 @@
 import { ShoppingCart } from "@mui/icons-material";
-import { Button, Card, CardContent, CardMedia, Typography } from "@mui/material";
-import { useRouter } from "next/router";
+import { Button, Card, CardContent, CardMedia, Stack, Typography } from "@mui/material";
 import React from "react";
 import styles from './ProductCard.module.css';
+import router, { useRouter } from "next/router";
 
 interface ProductCardProps {
   component: {
@@ -14,11 +14,29 @@ interface ProductCardProps {
 
 const ProductCard: React.FC<ProductCardProps> = ({ component }) => {
   const formattedPrice = `USD$ ${component.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`;
-  const router = useRouter();
 
-  const handleCarritoClick = () => {
-    router.push("/carrito");
+  const handleAddToCart = (event: React.MouseEvent) => {
+    event.stopPropagation();
+
+    const currentCart = JSON.parse(localStorage.getItem("cart") || "[]");
+
+    const updatedCart = currentCart.map((item: any) => {
+      if (item.id === component.id) {
+        return { ...item, quantity: item.quantity + 1 };
+      }
+      return item;
+    });
+
+    const productExists = updatedCart.some((item: any) => item.id === component.id);
+
+    const finalCart = productExists ? updatedCart : [...updatedCart, { ...component, quantity: 1 }];
+
+    localStorage.setItem("cart", JSON.stringify(finalCart));
+
+    window.dispatchEvent(new StorageEvent("storage", { key: "cart", newValue: JSON.stringify(finalCart) }));
   };
+
+  const router = useRouter();
 
   const handleProductClick = () => {
     router.push(`/detalle/${component.id}`);
@@ -32,15 +50,15 @@ const ProductCard: React.FC<ProductCardProps> = ({ component }) => {
         alt={component.name}
         className={styles.cardImage}
       />
-      <Typography variant="h5" sx={{marginLeft: "5%", marginRight:"5%"}}>
+      <Stack className={styles.component}>
         {component.name}
-      </Typography>
-      <CardContent className={styles.cardContent}>
+      </Stack>
+      <CardContent className={styles.buySection}>
         <Typography variant="h5" fontWeight="bold">
           {formattedPrice}
         </Typography>
         <Button
-          onClick={handleCarritoClick}
+          onClick={handleAddToCart}
           className={styles.cartButton}
         >
           <ShoppingCart />

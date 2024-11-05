@@ -13,7 +13,11 @@ const Header = () => {
   };
 
   const handleProductosClick = () => {
-    router.push("/productos")
+    router.push("/productos");
+  };
+
+  const handleCarritoClick = () => {
+    router.push("/carrito");
   };
 
   return (
@@ -27,7 +31,7 @@ const Header = () => {
       >
         <Stack sx={{ flexGrow: 1, flexDirection: "row", paddingLeft: "27%" }}>
           <SearchInput />
-          <Button>
+          <Button onClick={handleCarritoClick}>
             <ShoppingCart sx={{ color: "#285b99" }} />
           </Button>
         </Stack>
@@ -39,7 +43,7 @@ const Header = () => {
               color: "#fff",
               "&:hover": {
                 bgcolor: "#1e4a76",
-              }
+              },
             }}
           >
             <PersonIcon sx={{ color: "#fff", marginRight: 1 }} />
@@ -67,8 +71,9 @@ const Header = () => {
           Productos
         </Button>
         <Button
-        onClick={handleProductosClick} 
-        sx={{ color: "#fff", marginLeft: "5%", marginRight: "5%" }}>
+          onClick={handleProductosClick}
+          sx={{ color: "#fff", marginLeft: "5%", marginRight: "5%" }}
+        >
           Notebooks
         </Button>
         <Button sx={{ color: "#fff", marginLeft: "5%", marginRight: "5%" }}>

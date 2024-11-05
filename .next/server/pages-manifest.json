@@ -1,8 +1,10 @@
 {
-  "/_error": "pages/_error.js",
   "/_app": "pages/_app.js",
+  "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
   "/productos": "pages/productos.js",
   "/": "pages/index.js",
-  "/detalle/[id]": "pages/detalle/[id].js"
+  "/api": "pages/api.js",
+  "/detalle/[id]": "pages/detalle/[id].js",
+  "/api/component/[id]": "pages/api/component/[id].js"
 }

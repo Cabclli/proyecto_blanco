@@ -27,6 +27,11 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
+    "/detalle/[id]": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/detalle/[id].js"
+    ],
     "/productos": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
