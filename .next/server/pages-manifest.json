@@ -3,8 +3,9 @@
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
   "/productos": "pages/productos.js",
-  "/": "pages/index.js",
   "/api": "pages/api.js",
-  "/detalle/[id]": "pages/detalle/[id].js",
-  "/api/component/[id]": "pages/api/component/[id].js"
+  "/api/component/[id]": "pages/api/component/[id].js",
+  "/carrito": "pages/carrito.js",
+  "/": "pages/index.js",
+  "/ayuda": "pages/ayuda.js"
 }
