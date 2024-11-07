@@ -47,10 +47,36 @@ const Detalles: React.FC = () => {
     .toString()
     .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`;
 
-  const handleCarritoClick = () => {
-    router.push("/carrito");
+  const handleAddToCart = (event: React.MouseEvent) => {
+    event.stopPropagation();
+
+    const currentCart = JSON.parse(localStorage.getItem("cart") || "[]");
+
+    const updatedCart = currentCart.map((item: any) => {
+      if (item.id === component.id) {
+        return { ...item, quantity: item.quantity + 1 };
+      }
+      return item;
+    });
+
+    const productExists = updatedCart.some(
+      (item: any) => item.id === component.id
+    );
+
+    const finalCart = productExists
+      ? updatedCart
+      : [...updatedCart, { ...component, quantity: 1 }];
+
+    localStorage.setItem("cart", JSON.stringify(finalCart));
+
+    window.dispatchEvent(
+      new StorageEvent("storage", {
+        key: "cart",
+        newValue: JSON.stringify(finalCart),
+      })
+    );
   };
-  
+
   return (
     <Stack className={styles.container}>
       <Stack className={styles.imageContainer}>
@@ -68,13 +94,12 @@ const Detalles: React.FC = () => {
           </Typography>
         </Stack>
         <Stack className={styles.buySection}>
-          <Typography className={styles.price}>Precio: {formattedPrice}</Typography>
-          <Button
-            onClick={handleCarritoClick}
-            className={styles.cartButton}
-            >
+          <Typography className={styles.price}>
+            Precio: {formattedPrice}
+          </Typography>
+          <Button onClick={handleAddToCart} className={styles.cartButton}>
             Agregar al carrito
-            <ShoppingCart className={styles.cartIcon}/>
+            <ShoppingCart className={styles.cartIcon} />
           </Button>
         </Stack>
         <Stack className={styles.propertiesContainer}>

@@ -1,5 +1,4 @@
 import Head from "next/head";
-import "../styles/globals.css";
 import { AppProps } from "next/app";
 import Layout from "@/src/layout/Layout";
 import { Fragment } from "react";
@@ -18,9 +17,9 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         <meta name="keywords" content="Keywords" />
         <title>Arma tu PC</title>
       </Head>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
     </Fragment>
   );
 }

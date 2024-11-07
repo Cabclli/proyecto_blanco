@@ -20,8 +20,8 @@ const Header = () => {
     router.push("/carrito");
   };
   const handleaAyuda = () => {
-    router.push("/ayuda")
-  }
+    router.push("/ayuda");
+  };
 
   return (
     <>
@@ -32,9 +32,16 @@ const Header = () => {
           margin: 2,
         }}
       >
-        <Stack sx={{ flexGrow: 1, flexDirection: "row", paddingLeft: "27%" }}>
+        <Stack sx={{ flexGrow: 1, flexDirection: "row", paddingLeft: "26%" }}>
           <SearchInput />
-          <Button onClick={handleCarritoClick}>
+          <Button
+            onClick={handleCarritoClick}
+            sx={{
+              border: "2px solid #285b99",
+              borderRadius: "15px",
+              marginLeft: "20px",
+            }}
+          >
             <ShoppingCart sx={{ color: "#285b99" }} />
           </Button>
         </Stack>
@@ -83,7 +90,7 @@ const Header = () => {
           Arma tu PC
         </Button>
         <Button
-        onClick={handleaAyuda}
+          onClick={handleaAyuda}
           sx={{
             color: "#fff",
             marginLeft: "5%",

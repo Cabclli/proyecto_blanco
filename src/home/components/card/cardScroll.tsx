@@ -71,22 +71,20 @@ const CardScroll: React.FC = () => {
         <Stack
           direction="row"
           className={styles.cardWrapper}
-          style={{ overflow: "hidden", width: `${cardWidth * itemsPerPage}px` }}
+          style={{ width: `${cardWidth * itemsPerPage}px` }}
         >
           <Stack
             direction="row"
             className={styles.cards}
             style={{
               transform: `translateX(${translateX}px)`,
-              gap: "10px",
-              transition: "transform 0.5s ease",
             }}
           >
             {components.map((component) => (
               <Stack
                 key={component.id}
                 className={styles.cardItem}
-                style={{ width: `${cardWidth}px`, flexShrink: 0 }}
+                style={{ width: `${cardWidth}px` }}
               >
                 <ProductCard
                   component={{
