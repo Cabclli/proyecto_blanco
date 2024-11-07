@@ -1,7 +1,8 @@
 import React from "react";
 import { Container, Stack } from "@mui/material";
 import Carousel from "./components/carrusel";
-import ComponentList from "../home/components/card/VerCard"
+import CardScroll from "./components/card/cardScroll";
+
 const slides = [
   { image: "https://via.placeholder.com/600x300?text=Image+1", url: "/planes" },
   { image: "https://via.placeholder.com/600x300?text=Image+2", url: "/planes" },
@@ -11,10 +12,10 @@ const slides = [
 const Home = () => {
   return (
     <>
-      <Container maxWidth="lg">
+      <Container>
         <Stack alignItems="center">
           <Carousel slides={slides} />
-          <ComponentList/>
+          <CardScroll />
         </Stack>
       </Container>
     </>

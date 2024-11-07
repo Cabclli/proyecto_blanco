@@ -11,7 +11,9 @@ const Carousel = ({ slides }) => {
   };
 
   const prevSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + slides.length) % slides.length);
+    setCurrentIndex(
+      (prevIndex) => (prevIndex - 1 + slides.length) % slides.length
+    );
   };
 
   const goToSlide = (index) => {
@@ -31,17 +33,26 @@ const Carousel = ({ slides }) => {
     <Stack
       style={{
         position: "relative",
-        width: "90%",
-        maxWidth: "100%",
+        width: "120%",
         overflow: "hidden",
-        paddingBottom: "50px",
+        paddingBottom: "40px",
+        marginTop: "16px",
+        borderRadius: "50px",
       }}
     >
-      <div onClick={handleImageClick} style={{ cursor: "pointer", height: "100%" }}>
+      <div
+        onClick={handleImageClick}
+        style={{ cursor: "pointer", height: "100%" }}
+      >
         <img
           src={slides[currentIndex].image}
           alt={`Slide ${currentIndex + 1}`}
-          style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "10px" }}
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            borderRadius: "50px",
+          }}
         />
       </div>
       <div
