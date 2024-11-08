@@ -1,5 +1,6 @@
 import Head from "next/head";
 import { AppProps } from "next/app";
+import "../styles/globals.css";
 import Layout from "@/src/layout/Layout";
 import { Fragment } from "react";
 
