@@ -24,23 +24,25 @@ const CartItem: React.FC<CartItemProps> = ({
 }) => {
   return (
     <Stack className={styles.listItem}>
-      <CardMedia
-        component="img"
-        image="https://static.gigabyte.com/StaticFile/Image/Global/1f7a4b7372688a9959a997aa486252e1/Product/25956/Png"
-        className={styles.image}
-      />
       <Stack className={styles.productInfo}>
-        <p>{name}</p>
-        <p>USD${(price * quantity).toFixed(2)}</p>
+        <CardMedia
+          component="img"
+          image="https://static.gigabyte.com/StaticFile/Image/Global/1f7a4b7372688a9959a997aa486252e1/Product/25956/Png"
+          className={styles.image}
+        />
+        <Stack>
+          <p>{name}</p>
+        </Stack>
       </Stack>
       <Stack className={styles.addRemoveButtons}>
         <Button onClick={() => updateQuantity(id, quantity - 1)}>
           <RemoveIcon />
         </Button>
-        <Typography>{quantity}</Typography>
+        <Typography className={styles.cantidad}>{quantity}</Typography>
         <Button onClick={() => updateQuantity(id, quantity + 1)}>
           <AddIcon />
         </Button>
+        <p>USD${(price * quantity).toFixed(2)}</p>
         <Button onClick={() => removeFromCart(id)}>
           <DeleteIcon />
         </Button>

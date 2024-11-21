@@ -1,6 +1,6 @@
 import React from "react";
 import { Stack, Typography } from "@mui/material";
-import CartItem from "./cartItem";
+import CartItem from "./CartItem";
 import styles from "../carrito.module.css";
 
 interface CartItemData {
