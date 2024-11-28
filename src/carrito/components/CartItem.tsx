@@ -35,15 +35,15 @@ const CartItem: React.FC<CartItemProps> = ({
         </Stack>
       </Stack>
       <Stack className={styles.addRemoveButtons}>
-        <Button onClick={() => updateQuantity(id, quantity - 1)}>
+        <Button onClick={() => updateQuantity(id, quantity - 1)} sx={{color:"#285b99"}}>
           <RemoveIcon />
         </Button>
         <Typography className={styles.cantidad}>{quantity}</Typography>
-        <Button onClick={() => updateQuantity(id, quantity + 1)}>
+        <Button onClick={() => updateQuantity(id, quantity + 1)} sx={{color:"#285b99"}}>
           <AddIcon />
         </Button>
         <p>USD${(price * quantity).toFixed(2)}</p>
-        <Button onClick={() => removeFromCart(id)}>
+        <Button onClick={() => removeFromCart(id)} sx={{color:"#285b99"}}>
           <DeleteIcon />
         </Button>
       </Stack>

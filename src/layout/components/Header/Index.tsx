@@ -37,7 +37,7 @@ const Header = () => {
           <Button
             onClick={handleCarritoClick}
             sx={{
-              border: "2px solid #285b99",
+              border: "1px solid #285b99",
               borderRadius: "15px",
               marginLeft: "20px",
             }}

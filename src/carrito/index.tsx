@@ -1,9 +1,11 @@
 // Carrito.tsx
 import React, { useState, useEffect } from "react";
-import { Typography, Stack } from "@mui/material";
+import { Stack, Button, Typography } from "@mui/material";
 import styles from "@/src/carrito/carrito.module.css";
 import CartList from "./components/CartList";
 import CartTotal from "./components/CartTotal";
+import { useRouter } from "next/router";
+import { ArrowBackIos } from "@mui/icons-material";
 
 interface CartItem {
   id: number;
@@ -51,9 +53,19 @@ const Carrito: React.FC = () => {
     setCart(updatedCart);
   };
 
+  const router = useRouter();
+  const handleVolverClick = () => {
+    router.push("/");
+  };
+
   return (
     <Stack className={styles.container}>
-      <Typography variant="h4">Carrito de Compras</Typography>
+      <Stack className={styles.title}>
+        <Button className={styles.backButton} onClick={handleVolverClick}>
+          <ArrowBackIos className={styles.ArrowBackIos} />
+        </Button>
+        <Typography variant="h4">Tu carrito</Typography>
+      </Stack>
       <CartList
         cart={cart}
         updateQuantity={updateQuantity}
