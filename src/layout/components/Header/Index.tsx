@@ -32,14 +32,21 @@ const Header = () => {
           margin: 2,
         }}
       >
-        <Stack sx={{ flexGrow: 1, flexDirection: "row", paddingLeft: "26%" }}>
+        <Stack
+          sx={{
+            flexGrow: 1,
+            flexDirection: "row",
+            paddingLeft: "28%",
+          }}
+        >
           <SearchInput />
           <Button
             onClick={handleCarritoClick}
             sx={{
               border: "1px solid #285b99",
               borderRadius: "15px",
-              marginLeft: "20px",
+              marginLeft: "10px",
+              height: "56px",
             }}
           >
             <ShoppingCart sx={{ color: "#285b99" }} />
@@ -51,6 +58,8 @@ const Header = () => {
             sx={{
               bgcolor: "#285b99",
               color: "#fff",
+              height: "56px",
+              borderRadius: "15px",
               "&:hover": {
                 bgcolor: "#1e4a76",
               },

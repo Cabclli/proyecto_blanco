@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { OutlinedInput, InputAdornment, Box, Typography } from "@mui/material";
+import { OutlinedInput, InputAdornment, Stack, Typography } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import Link from "next/link"; // Importar el componente Link
+import styles from './SearchInput.module.css'; // Importa el archivo CSS
 
 const SearchInput = () => {
   const [query, setQuery] = useState(""); // Estado para el texto de la búsqueda
@@ -41,59 +42,38 @@ const SearchInput = () => {
   };
 
   return (
-    <Box sx={{ width: "100%", maxWidth: 600, margin: "0 auto", paddingTop: 2 }}>
+    <Stack className={styles.searchInput}>
       <OutlinedInput
         value={query}
         onChange={handleChange}
-        sx={{
-          width: "100%", // Hace que la barra ocupe todo el ancho disponible
-          height: 45, // Altura constante para el campo
-          borderRadius: 30, // Bordes redondeados
-          paddingRight: "10px", // Un pequeño espacio al lado derecho
-          "& .MuiOutlinedInput-notchedOutline": {
-            borderColor: "#285b99", // Color del borde
-          },
-          "&:hover .MuiOutlinedInput-notchedOutline": {
-            borderColor: "#285b99", // Color del borde al pasar el mouse
-          },
-          "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-            borderColor: "#285b99", // Color del borde cuando el input está enfocado
-          },
-        }}
+        className={`${styles.input} ${styles.inputOutlined}`} // Aplicamos las clases CSS
         endAdornment={
           <InputAdornment position="end">
-            <SearchIcon sx={{ color: "#285b99", fontSize: 26 }} />{" "}
-            {/* Icono con tamaño fijo */}
+            <SearchIcon className={styles.inputIcon} />{" "}
+            {/* Icono con clase CSS */}
           </InputAdornment>
         }
       />
 
       {/* Mostrar los resultados filtrados debajo de la barra de búsqueda */}
       {query !== "" && ( // Solo mostramos los resultados si hay texto en la búsqueda
-        <Box sx={{ marginTop: 1, maxHeight: 200, overflowY: "auto" }}>
+        <Stack className={styles.resultsContainer}>
           {filteredData.length === 0 ? (
-            <Typography variant="body2" color="textSecondary">
+            <Typography className={styles.noResults}>
               No results found
             </Typography>
           ) : (
             filteredData.map((item) => (
               <Link href={`/detalle/${item.id}`} key={item.id} passHref>
-                <Typography
-                  sx={{
-                    padding: "8px 0",
-                    fontSize: 14,
-                    cursor: "pointer",
-                    "&:hover": { color: "#285b99" },
-                  }}
-                >
+                <Typography className={styles.resultItem}>
                   {item.name}
                 </Typography>
               </Link>
             ))
           )}
-        </Box>
+        </Stack>
       )}
-    </Box>
+    </Stack>
   );
 };
 
