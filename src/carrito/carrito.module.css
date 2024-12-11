@@ -63,6 +63,7 @@
 .image {
   width: 15%;
   object-fit: cover;
+  margin-right: 2%;
 }
 
 .productInfo {

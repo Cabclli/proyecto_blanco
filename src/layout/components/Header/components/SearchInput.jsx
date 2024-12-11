@@ -1,71 +1,110 @@
 import React, { useState, useEffect } from "react";
-import { OutlinedInput, InputAdornment, Stack, Typography } from "@mui/material";
+import {
+  OutlinedInput,
+  InputAdornment,
+  Box,
+  Typography,
+  Stack,
+} from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import Link from "next/link"; // Importar el componente Link
-import styles from './SearchInput.module.css'; // Importa el archivo CSS
+import Link from "next/link";
+import styles from "./SearchInput.module.css";
 
 const SearchInput = () => {
-  const [query, setQuery] = useState(""); // Estado para el texto de la búsqueda
-  const [data, setData] = useState([]); // Estado para los datos obtenidos de la API
-  const [filteredData, setFilteredData] = useState([]); // Estado para los datos filtrados
+  const [query, setQuery] = useState("");
+  const [data, setData] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
+  const [selectedIndex, setSelectedIndex] = useState(-1);
 
-  // Obtener datos de la API cuando el componente se monte
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("/api"); // Cambia esta URL por la de tu API
+        const response = await fetch("/api");
         const result = await response.json();
-        setData(result); // Guardamos los datos obtenidos
-        setFilteredData(result); // Inicialmente mostramos todos los datos
+        setData(result);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
-
     fetchData();
   }, []);
 
-  // Filtrar los datos en función de la búsqueda
   const handleChange = (event) => {
     const searchQuery = event.target.value;
     setQuery(searchQuery);
 
     if (searchQuery === "") {
-      setFilteredData([]); // Si el campo de búsqueda está vacío, no mostrar resultados
+      setFilteredData([]);
     } else {
       const lowercasedQuery = searchQuery.toLowerCase();
-      const filtered = data.filter(
-        (item) => item.name.toLowerCase().includes(lowercasedQuery) // Ajusta esto según la propiedad que quieras filtrar
+      const filtered = data.filter((item) =>
+        item.name.toLowerCase().includes(lowercasedQuery)
       );
       setFilteredData(filtered);
+    }
+    setSelectedIndex(-1);
+  };
+
+  const handleKeyDown = (event) => {
+    if (filteredData.length === 0) return;
+
+    if (event.key === "ArrowDown") {
+      setSelectedIndex((prevIndex) =>
+        prevIndex < filteredData.length - 1 ? prevIndex + 1 : 0
+      );
+    } else if (event.key === "ArrowUp") {
+      setSelectedIndex((prevIndex) =>
+        prevIndex > 0 ? prevIndex - 1 : filteredData.length - 1
+      );
+    } else if (event.key === "Enter" && selectedIndex >= 0) {
+      const selectedItem = filteredData[selectedIndex];
+      if (selectedItem) {
+        window.location.href = `/detalle/${selectedItem.id}`;
+      }
     }
   };
 
   return (
-    <Stack className={styles.searchInput}>
+    <Stack className={styles.container}>
       <OutlinedInput
         value={query}
         onChange={handleChange}
-        className={`${styles.input} ${styles.inputOutlined}`} // Aplicamos las clases CSS
+        onKeyDown={handleKeyDown}
+        className={styles.input} // Aplica la clase modular aquí
+        sx={{
+          width: "100%",
+          paddingRight: "10px",
+          "& .MuiOutlinedInput-notchedOutline": {
+            borderColor: "#285b99", // Color por defecto
+          },
+          "&:hover .MuiOutlinedInput-notchedOutline": {
+            borderColor: "#285b99", // Color en hover
+          },
+          "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+            border: "solid 1px #285b99", // Color al enfocarse
+          },
+        }}
         endAdornment={
-          <InputAdornment position="end">
-            <SearchIcon className={styles.inputIcon} />{" "}
-            {/* Icono con clase CSS */}
+          <InputAdornment>
+            <SearchIcon className={styles.searchIcon} />
           </InputAdornment>
         }
       />
 
-      {/* Mostrar los resultados filtrados debajo de la barra de búsqueda */}
-      {query !== "" && ( // Solo mostramos los resultados si hay texto en la búsqueda
+      {query !== "" && (
         <Stack className={styles.resultsContainer}>
           {filteredData.length === 0 ? (
             <Typography className={styles.noResults}>
               No results found
             </Typography>
           ) : (
-            filteredData.map((item) => (
+            filteredData.map((item, index) => (
               <Link href={`/detalle/${item.id}`} key={item.id} passHref>
-                <Typography className={styles.resultItem}>
+                <Typography
+                  className={`${styles.resultItem} ${
+                    index === selectedIndex ? styles.selectedItem : ""
+                  }`}
+                >
                   {item.name}
                 </Typography>
               </Link>

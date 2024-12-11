@@ -1,111 +1,59 @@
 import * as React from "react";
 import { Stack, Button } from "@mui/material";
 import { ShoppingCart } from "@mui/icons-material";
-import SearchInput from "./components/SearchInput.jsx";
 import PersonIcon from "@mui/icons-material/Person";
 import { useRouter } from "next/router";
+import SearchInput from "./components/SearchInput.jsx";
+import styles from "./Index.module.css";
 
 const Header = () => {
   const router = useRouter();
-
   const handleLoginClick = () => {
     router.push("/login");
   };
-
+  const handleHomeClick = () => {
+    router.push("/");
+  };
   const handleProductosClick = () => {
     router.push("/productos");
   };
-
   const handleCarritoClick = () => {
     router.push("/carrito");
   };
-  const handleaAyuda = () => {
+  const handleAyudaClick = () => {
     router.push("/ayuda");
   };
 
   return (
     <>
-      <Stack
-        sx={{
-          flexDirection: "row",
-          justifyContent: "space-between",
-          margin: 2,
-        }}
-      >
-        <Stack
-          sx={{
-            flexGrow: 1,
-            flexDirection: "row",
-            paddingLeft: "28%",
-          }}
-        >
+      <Stack className={styles.headerContainer}>
+        <Button onClick={handleHomeClick}>
+          <img
+            src="https://cdn.worldvectorlogo.com/logos/apotex.svg"
+            alt="My Icon"
+            className={styles.logo}
+          />
+        </Button>
+        <Stack className={styles.searchCart}>
           <SearchInput />
-          <Button
-            onClick={handleCarritoClick}
-            sx={{
-              border: "1px solid #285b99",
-              borderRadius: "15px",
-              marginLeft: "10px",
-              height: "56px",
-            }}
-          >
-            <ShoppingCart sx={{ color: "#285b99" }} />
+          <Button onClick={handleCarritoClick} className={styles.cartButton}>
+            <ShoppingCart className={styles.cartIcon} />
           </Button>
         </Stack>
-        <Stack sx={{ flexDirection: "row", marginLeft: "auto" }}>
-          <Button
-            onClick={handleLoginClick}
-            sx={{
-              bgcolor: "#285b99",
-              color: "#fff",
-              height: "56px",
-              borderRadius: "15px",
-              "&:hover": {
-                bgcolor: "#1e4a76",
-              },
-            }}
-          >
-            <PersonIcon sx={{ color: "#fff", marginRight: 1 }} />
+        <Stack className={styles.login}>
+          <Button onClick={handleLoginClick} className={styles.loginButton}>
+            <PersonIcon className={styles.loginIcon} />
             Iniciar sesión
           </Button>
         </Stack>
       </Stack>
-      <Stack
-        sx={{
-          flexDirection: "row",
-          bgcolor: "#285b99",
-          paddingTop: "20px",
-          paddingBottom: "20px",
-          justifyContent: "center",
-        }}
-      >
-        <Button
-          onClick={handleProductosClick}
-          sx={{
-            color: "#fff",
-            marginLeft: "10%",
-            marginRight: "5%",
-          }}
-        >
+      <Stack className={styles.navBar}>
+        <Button onClick={handleProductosClick} className={styles.navButton}>
           Productos
         </Button>
-        <Button
-          onClick={handleProductosClick}
-          sx={{ color: "#fff", marginLeft: "5%", marginRight: "5%" }}
-        >
-          Notebooks
-        </Button>
-        <Button sx={{ color: "#fff", marginLeft: "5%", marginRight: "5%" }}>
-          Arma tu PC
-        </Button>
-        <Button
-          onClick={handleaAyuda}
-          sx={{
-            color: "#fff",
-            marginLeft: "5%",
-            marginRight: "10%",
-          }}
-        >
+        <Button className={styles.navButton}>Notebooks</Button>
+        <Button className={styles.navButton}>Arma tu PC</Button>
+        <Button onClick={handleAyudaClick} className={styles.navButton}>
           Ayuda
         </Button>
       </Stack>
