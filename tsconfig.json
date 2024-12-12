@@ -21,6 +21,6 @@
       "@/pages/*": ["pages/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "prisma/creador.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "prisma/creador.ts", "src/layout/components/Header/components/CartCounter.tsx"],
   "exclude": ["node_modules"]
 }

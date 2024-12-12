@@ -1,9 +1,9 @@
 import * as React from "react";
 import { Stack, Button } from "@mui/material";
-import { ShoppingCart } from "@mui/icons-material";
 import PersonIcon from "@mui/icons-material/Person";
 import { useRouter } from "next/router";
 import SearchInput from "./components/SearchInput.jsx";
+import CartCounter from "./components/CartCounter";
 import styles from "./Index.module.css";
 
 const Header = () => {
@@ -37,7 +37,7 @@ const Header = () => {
         <Stack className={styles.searchCart}>
           <SearchInput />
           <Button onClick={handleCarritoClick} className={styles.cartButton}>
-            <ShoppingCart className={styles.cartIcon} />
+            <CartCounter />
           </Button>
         </Stack>
         <Stack className={styles.login}>

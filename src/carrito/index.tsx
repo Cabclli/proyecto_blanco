@@ -1,4 +1,3 @@
-// Carrito.tsx
 import React, { useState, useEffect } from "react";
 import { Stack, Button, Typography } from "@mui/material";
 import styles from "@/src/carrito/carrito.module.css";
@@ -45,13 +44,20 @@ const Carrito: React.FC = () => {
     );
     localStorage.setItem("cart", JSON.stringify(updatedCart));
     setCart(updatedCart);
+  
+    const event = new Event("cartChange");
+    document.dispatchEvent(event);
   };
-
+  
   const removeFromCart = (id: number) => {
     const updatedCart = cart.filter((item) => item.id !== id);
     localStorage.setItem("cart", JSON.stringify(updatedCart));
     setCart(updatedCart);
+  
+    const event = new Event("cartChange");
+    document.dispatchEvent(event);
   };
+  
 
   const router = useRouter();
   const handleVolverClick = () => {
