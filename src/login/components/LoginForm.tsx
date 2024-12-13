@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Stack, TextField, Typography } from "@mui/material";
+import styles from "./LoginForm.module.css";
 
 interface LoginFormProps {
   email: string;
@@ -16,22 +17,14 @@ const LoginForm: React.FC<LoginFormProps> = ({
   setEmail,
   setPassword,
   error,
-  handleSubmit
+  handleSubmit,
 }) => {
   return (
-    <Stack
-      sx={{
-        maxWidth: "500px",
-        padding: "30px",
-        bgcolor: "#285b99",
-        borderRadius: "15px",
-        boxShadow: 3,
-      }}
-    >
-      <Typography variant="h5" color="#fff" textAlign="center" marginBottom={2}>
+    <Stack className={styles.container}>
+      <Typography variant="h5" className={styles.title}>
         Ingresa a tu cuenta
       </Typography>
-      {error && <Typography color="#fff" textAlign="center" marginBottom={2}>{error}</Typography>}
+      {error && <Typography className={styles.error}>{error}</Typography>}
       <form onSubmit={handleSubmit}>
         <TextField
           id="email"
@@ -42,23 +35,23 @@ const LoginForm: React.FC<LoginFormProps> = ({
             marginBottom: 2,
             "& .MuiOutlinedInput-root": {
               "& fieldset": {
-                borderColor: '#ccc',
+                borderColor: "#363636",
               },
               "&:hover fieldset": {
-                borderColor: '#bbb',
+                borderColor: "#363636",
               },
               "&.Mui-focused fieldset": {
-                borderColor: 'white',
+                borderColor: "#363636",
               },
               "& input": {
-                color: '#fff',
+                color: "#363636",
               },
-            }
+            },
           }}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           InputLabelProps={{
-            style: { color: '#fff' },
+            style: { color: "#363636" },
           }}
         />
         <TextField
@@ -71,27 +64,26 @@ const LoginForm: React.FC<LoginFormProps> = ({
             marginBottom: 2,
             "& .MuiOutlinedInput-root": {
               "& fieldset": {
-                borderColor: '#ccc',
+                borderColor: "#363636",
               },
               "&:hover fieldset": {
-                borderColor: '#bbb',
+                borderColor: "#363636",
               },
               "&.Mui-focused fieldset": {
-                borderColor: 'white',
+                borderColor: "#363636",
               },
               "& input": {
-                color: '#fff',
+                color: "#363636",
               },
-            }
+            },
           }}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           InputLabelProps={{
-            style: { color: '#fff' },
+            style: { color: "#363636" },
           }}
         />
         <Button
-          variant="contained"
           sx={{
             marginTop: "20px",
             color: "#fff",

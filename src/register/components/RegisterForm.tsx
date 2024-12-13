@@ -31,20 +31,22 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
       sx={{
         maxWidth: "500px",
         padding: "30px",
-        
+        backgroundColor: "#dfdfdf",
         borderRadius: "15px",
         boxShadow: 3,
       }}
     >
-      <Typography variant="h5"  textAlign="center" marginBottom={2}>
+      <Typography variant="h5" textAlign="center" marginBottom={2}>
         Regístrate
       </Typography>
       {error && (
-        <Typography color="#fff" textAlign="center" marginBottom={2}>
+        <Typography color="#363636" textAlign="center" marginBottom={2}>
           {error}
         </Typography>
       )}
       
+        <Typography >Datos de la cuenta</Typography>
+        <br />
         <TextField
           id="email"
           label="Correo electrónico"
@@ -54,10 +56,10 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
             marginBottom: 2,
             "& .MuiOutlinedInput-root": {
               "& fieldset": {
-                borderColor: "#ccc",
+                borderColor: "#363636",
               },
               "&:hover fieldset": {
-                borderColor: "#bbb",
+                borderColor: "#363636",
               },
              
               
@@ -66,7 +68,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           InputLabelProps={{
-            style: {  },
+            style: { color: "#363636" },
           }}
         />
         <TextField
@@ -79,10 +81,10 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
             marginBottom: 2,
             "& .MuiOutlinedInput-root": {
               "& fieldset": {
-                borderColor: "#ccc",
+                borderColor: "#363636",
               },
               "&:hover fieldset": {
-                borderColor: "#bbb",
+                borderColor: "#363636",
               },
               
             },
@@ -90,7 +92,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           InputLabelProps={{
-            style: { },
+            style: { color: "#363636" },
           }}
         />
         <Typography >Datos personales</Typography>
@@ -105,10 +107,10 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
             marginBottom: 2,
             "& .MuiOutlinedInput-root": {
               "& fieldset": {
-                borderColor: "#ccc",
+                borderColor: "#363636",
               },
               "&:hover fieldset": {
-                borderColor: "#bbb",
+                borderColor: "#363636",
               },
              
             },
@@ -116,7 +118,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
           value={name}
           onChange={(e) => setName(e.target.value)}
           InputLabelProps={{
-            style: {},
+            style: { color: "#363636" },
           }}
         />
         <TextField
@@ -128,10 +130,10 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
             marginBottom: 2,
             "& .MuiOutlinedInput-root": {
               "& fieldset": {
-                borderColor: "#ccc",
+                borderColor: "#363636",
               },
               "&:hover fieldset": {
-                borderColor: "#bbb",
+                borderColor: "#363636",
               },
              
              
@@ -140,14 +142,14 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
           value={lastname}
           onChange={(e) => setLastname(e.target.value)}
           InputLabelProps={{
-            style: { },
+            style: { color: "#363636" },
           }}
         />
         <Button
           variant="contained"
           sx={{
             marginTop: "20px",
-            color: "#fff",
+            color: "#000",
             bgcolor: "#007bff",
             "&:hover": { bgcolor: "#0056b3" },
           }}

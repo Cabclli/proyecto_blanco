@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   OutlinedInput,
   InputAdornment,
@@ -7,7 +7,7 @@ import {
   Stack,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import Link from "next/link";
+import { useRouter } from "next/router";
 import styles from "./SearchInput.module.css";
 
 const SearchInput = () => {
@@ -15,6 +15,8 @@ const SearchInput = () => {
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [selectedIndex, setSelectedIndex] = useState(-1);
+
+  const router = useRouter();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -37,9 +39,13 @@ const SearchInput = () => {
       setFilteredData([]);
     } else {
       const lowercasedQuery = searchQuery.toLowerCase();
-      const filtered = data.filter((item) =>
-        item.name.toLowerCase().includes(lowercasedQuery)
-      );
+      const filtered = data.filter((item) => {
+        return (
+          item.name.toLowerCase().includes(lowercasedQuery) ||
+          item.category.name.toLowerCase().includes(lowercasedQuery) ||
+          (item.subcategory?.name?.toLowerCase() || "").includes(lowercasedQuery)
+        );
+      });
       setFilteredData(filtered);
     }
     setSelectedIndex(-1);
@@ -59,9 +65,17 @@ const SearchInput = () => {
     } else if (event.key === "Enter" && selectedIndex >= 0) {
       const selectedItem = filteredData[selectedIndex];
       if (selectedItem) {
-        window.location.href = `/detalle/${selectedItem.id}`;
+        router.push(`/detalle/${selectedItem.id}`);
+        setQuery("");
+        setFilteredData([]);
       }
     }
+  };
+
+  const handleClickResult = (id) => {
+    router.push(`/detalle/${id}`);
+    setQuery("");
+    setFilteredData([]);
   };
 
   return (
@@ -70,18 +84,18 @@ const SearchInput = () => {
         value={query}
         onChange={handleChange}
         onKeyDown={handleKeyDown}
-        className={styles.input} // Aplica la clase modular aquí
+        className={styles.input}
         sx={{
           width: "100%",
           paddingRight: "10px",
           "& .MuiOutlinedInput-notchedOutline": {
-            borderColor: "#285b99", // Color por defecto
+            borderColor: "#285b99",
           },
           "&:hover .MuiOutlinedInput-notchedOutline": {
-            borderColor: "#285b99", // Color en hover
+            borderColor: "#285b99",
           },
           "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-            border: "solid 1px #285b99", // Color al enfocarse
+            border: "solid 1px #285b99",
           },
         }}
         endAdornment={
@@ -99,15 +113,15 @@ const SearchInput = () => {
             </Typography>
           ) : (
             filteredData.map((item, index) => (
-              <Link href={`/detalle/${item.id}`} key={item.id} passHref>
-                <Typography
-                  className={`${styles.resultItem} ${
-                    index === selectedIndex ? styles.selectedItem : ""
-                  }`}
-                >
-                  {item.name}
-                </Typography>
-              </Link>
+              <Typography
+                key={item.id}
+                onClick={() => handleClickResult(item.id)}
+                className={`${styles.resultItem} ${
+                  index === selectedIndex ? styles.selectedItem : ""
+                }`}
+              >
+                {item.name}
+              </Typography>
             ))
           )}
         </Stack>

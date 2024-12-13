@@ -1,9 +1,18 @@
 import React, { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
-import { Button, Stack, Typography, MenuItem, Select, FormControl, SelectChangeEvent, InputAdornment } from "@mui/material";
+import {
+  Button,
+  Stack,
+  Typography,
+  MenuItem,
+  Select,
+  FormControl,
+  SelectChangeEvent,
+  InputAdornment,
+} from "@mui/material";
 import { useRouter } from "next/router";
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import styles from './ProductDisplay.module.css';
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import styles from "./ProductDisplay.module.css";
 
 interface ComponentData {
   id: number;
@@ -50,26 +59,27 @@ const ComponentList: React.FC = () => {
 
   return (
     <div>
-      <Stack className={styles.gridFilter}>  
+      <Stack className={styles.title}>
         <Stack className={styles.destacados}>
           <Button className={styles.backButton} onClick={handleVolverClick}>
-            <ArrowBackIosIcon className={styles.ArrowBackIosIcon}/>
+            <ArrowBackIosIcon className={styles.ArrowBackIosIcon} />
           </Button>
           <Typography variant="h4">Destacados</Typography>
         </Stack>
-
-        <Stack className={styles.filtro}>
-          <FormControl sx={{
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-            borderBottom : "2px solid #285b99",
-            height: "45px",
-            width: "400px",
-            ".MuiOutlinedInput-notchedOutline": {
-              border: "none",
-            },
-          }}>
+        <Stack>
+          <FormControl
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              borderBottom: "2px solid #285b99",
+              height: "45px",
+              width: "400px",
+              ".MuiOutlinedInput-notchedOutline": {
+                border: "none",
+              },
+            }}
+          >
             <Select
               value={sortOrder}
               onChange={handleSortChange}
@@ -94,19 +104,21 @@ const ComponentList: React.FC = () => {
           </FormControl>
         </Stack>
       </Stack>
-      
-      <div className={styles.productGrid}>
-        {sortedComponents.map((component) => (
-          <ProductCard
-            key={component.id}
-            component={{
-              name: component.name,
-              price: component.price,
-              id: component.id
-            }}
-          />
-        ))}
-      </div>
+      <Stack sx={{ display: "flex", flexDirection: "row" }}>
+        <Stack className={styles.filters}>aaa</Stack>
+        <div className={styles.productGrid}>
+          {sortedComponents.map((component) => (
+            <ProductCard
+              key={component.id}
+              component={{
+                name: component.name,
+                price: component.price,
+                id: component.id,
+              }}
+            />
+          ))}
+        </div>
+      </Stack>
     </div>
   );
 };
