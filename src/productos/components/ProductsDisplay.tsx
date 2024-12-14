@@ -8,7 +8,6 @@ import {
   Select,
   FormControl,
   SelectChangeEvent,
-  InputAdornment,
 } from "@mui/material";
 import { useRouter } from "next/router";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
@@ -27,7 +26,8 @@ interface ComponentData {
 
 const ComponentList: React.FC = () => {
   const [components, setComponents] = useState<ComponentData[]>([]);
-  const [sortOrder, setSortOrder] = useState<string>("");
+  const [sortOrder, setSortOrder] = useState<string>("Todos los productos"); // Valor predeterminado
+  const [selectedCategory, setSelectedCategory] = useState<string>("Seleccionar Categoría"); // Estado para la categoría seleccionada (por defecto "Seleccionar Categoría")
 
   useEffect(() => {
     const fetchComponents = async () => {
@@ -43,6 +43,10 @@ const ComponentList: React.FC = () => {
     setSortOrder(event.target.value);
   };
 
+  const handleCategoryChange = (event: SelectChangeEvent<string>) => {
+    setSelectedCategory(event.target.value);
+  };
+
   const sortedComponents = [...components].sort((a, b) => {
     if (sortOrder === "asc") {
       return a.price - b.price;
@@ -52,10 +56,22 @@ const ComponentList: React.FC = () => {
     return 0;
   });
 
+  // Filtrar por categoría si se seleccionó una
+  const filteredComponents = selectedCategory !== "Seleccionar Categoría"
+    ? sortedComponents.filter(
+        (component) => component.category.name === selectedCategory
+      )
+    : sortedComponents;
+
   const router = useRouter();
   const handleVolverClick = () => {
     router.push("/");
   };
+
+  // Obtener todas las categorías únicas de los componentes
+  const categories = [
+    ...new Set(components.map((component) => component.category.name)),
+  ];
 
   return (
     <div>
@@ -64,7 +80,7 @@ const ComponentList: React.FC = () => {
           <Button className={styles.backButton} onClick={handleVolverClick}>
             <ArrowBackIosIcon className={styles.ArrowBackIosIcon} />
           </Button>
-          <Typography variant="h4">Destacados</Typography>
+          <Typography variant="h4">Todos los productos</Typography> {/* Aquí cambia el texto */}
         </Stack>
         <Stack>
           <FormControl
@@ -97,28 +113,66 @@ const ComponentList: React.FC = () => {
                 },
               }}
             >
-              <MenuItem value="Destacados">Destacados</MenuItem>
+              <MenuItem value="Todos los productos">Todos los productos</MenuItem> {/* Opción predeterminada */}
               <MenuItem value="asc">De menor a mayor</MenuItem>
               <MenuItem value="desc">De mayor a menor</MenuItem>
             </Select>
           </FormControl>
         </Stack>
-      </Stack>
-      <Stack sx={{ display: "flex", flexDirection: "row" }}>
-        <Stack className={styles.filters}>aaa</Stack>
-        <div className={styles.productGrid}>
-          {sortedComponents.map((component) => (
-            <ProductCard
-              key={component.id}
-              component={{
-                name: component.name,
-                price: component.price,
-                id: component.id,
+        <Stack>
+          <FormControl
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              borderBottom: "2px solid #285b99",
+              height: "45px",
+              width: "400px",
+              ".MuiOutlinedInput-notchedOutline": {
+                border: "none",
+              },
+            }}
+          >
+            <Select
+              value={selectedCategory}
+              onChange={handleCategoryChange}
+              sx={{
+                display: "flex",
+                alignItems: "baseline",
+                width: "100%",
+                padding: "0px",
               }}
-            />
-          ))}
-        </div>
+              MenuProps={{
+                PaperProps: {
+                  style: {
+                    maxHeight: 300,
+                  },
+                },
+              }}
+            >
+              <MenuItem value="Seleccionar Categoría">Seleccionar Categoría</MenuItem> {/* Opción predeterminada */}
+              {categories.map((category) => (
+                <MenuItem key={category} value={category}>
+                  {category}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </Stack>
       </Stack>
+      <Stack sx={{ display: "flex", flexDirection: "row" }}></Stack>
+      <div className={styles.productGrid}>
+        {filteredComponents.map((component) => (
+          <ProductCard
+            key={component.id}
+            component={{
+              name: component.name,
+              price: component.price,
+              id: component.id,
+            }}
+          />
+        ))}
+      </div>
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import {
   OutlinedInput,
   InputAdornment,
@@ -39,13 +39,9 @@ const SearchInput = () => {
       setFilteredData([]);
     } else {
       const lowercasedQuery = searchQuery.toLowerCase();
-      const filtered = data.filter((item) => {
-        return (
-          item.name.toLowerCase().includes(lowercasedQuery) ||
-          item.category.name.toLowerCase().includes(lowercasedQuery) ||
-          (item.subcategory?.name?.toLowerCase() || "").includes(lowercasedQuery)
-        );
-      });
+      const filtered = data.filter((item) =>
+        item.name.toLowerCase().startsWith(lowercasedQuery)
+      );
       setFilteredData(filtered);
     }
     setSelectedIndex(-1);

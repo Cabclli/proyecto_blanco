@@ -34,13 +34,7 @@
   color: #285b99;
 }
 
-.filters {
-  display: flex;
-  flex-direction: column;
-  width: 60%;
-  padding: 20px;
-  margin-left: 10%;
-}
+
 
 .productGrid {
   display: grid;
